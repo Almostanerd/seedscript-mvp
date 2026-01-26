@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SeedScript | Phygital Impact Tracker</title>
+    <title>SeedScript | Phygital Impact Lab</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     
@@ -14,23 +14,14 @@
                     colors: {
                         seed: { cream: '#FDFBF7', sage: '#C3D0C1', deep: '#4A5D4E', accent: '#D4A373' }
                     },
-                    fontFamily: {
-                        sans: ['Outfit', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif'],
-                    },
+                    fontFamily: { sans: ['Outfit', 'sans-serif'], serif: ['Playfair Display', 'serif'] },
                     animation: {
                         'enter': 'fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards',
                         'float-slow': 'float 15s ease-in-out infinite',
                     },
                     keyframes: {
-                        fadeInUp: {
-                            '0%': { opacity: '0', transform: 'translateY(30px) scale(0.98)' },
-                            '100%': { opacity: '1', transform: 'translateY(0) scale(1)' },
-                        },
-                        float: {
-                            '0%, 100%': { transform: 'translate(0, 0) rotate(0deg)' },
-                            '50%': { transform: 'translate(30px, -20px) rotate(8deg)' },
-                        }
+                        fadeInUp: { '0%': { opacity: '0', transform: 'translateY(30px) scale(0.98)' }, '100%': { opacity: '1', transform: 'translateY(0) scale(1)' } },
+                        float: { '0%, 100%': { transform: 'translate(0, 0) rotate(0deg)' }, '50%': { transform: 'translate(30px, -20px) rotate(8deg)' } }
                     }
                 }
             }
@@ -39,25 +30,13 @@
 
     <style>
         body { background-color: #FDFBF7; color: #4A5D4E; overflow-x: hidden; }
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.9);
-            box-shadow: 0 20px 40px -10px rgba(74, 93, 78, 0.1);
-        }
-        .loading-spinner {
-            border: 3px solid rgba(74, 93, 78, 0.1);
-            border-left-color: #4A5D4E;
-            border-radius: 50%;
-            width: 30px; height: 30px;
-            animation: spin 1s linear infinite;
-        }
+        .glass-panel { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.9); box-shadow: 0 20px 40px -10px rgba(74, 93, 78, 0.1); }
+        .loading-spinner { border: 3px solid rgba(74, 93, 78, 0.1); border-left-color: #4A5D4E; border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         select {-webkit-appearance: none; appearance: none;}
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-center py-10 px-4 relative antialiased">
+<body class="min-h-screen flex flex-col items-center justify-center py-10 px-4 relative antialiased" onload="initLocation()">
 
     <div class="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
         <div class="absolute top-0 left-0 -translate-x-1/4 -translate-y-1/4 w-96 h-96 bg-seed-sage/30 rounded-full blur-3xl animate-float-slow"></div>
@@ -65,22 +44,20 @@
     </div>
 
     <main class="w-full max-w-md relative z-10 opacity-0 animate-enter">
-        
         <header class="text-center mb-6">
             <div class="inline-flex p-4 rounded-full bg-white/80 mb-4 shadow-sm ring-1 ring-seed-sage/20">
                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#4A5D4E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-5"/><path d="M9 12.22c.82-.7 2.3-1.66 3-2.22 0 0 2.29 1.75 3.8 3.44 1.3 1.45 2.2 3.86 1.48 5.35C16.4 20.5 14 22 12 22s-4.4-1.5-5.28-3.21c-.72-1.49.18-3.9 1.48-5.35z"/><path d="M12 10c.38-.6 1.27-1.92 2-3.41 1.22-2.5 1.46-4.89.73-5.87-.81-1.1-3.28-.44-5.46 1.75C8.07 3.53 7.5 4.8 7.5 6c0 2.06.79 4.19 2 6"/></svg>
             </div>
             <h1 class="font-serif text-5xl italic font-medium mb-2 text-seed-deep tracking-tight">SeedScript</h1>
-            <p class="text-[0.65rem] font-bold tracking-[0.3em] uppercase text-seed-deep/60">Phygital Sustainability Lab</p>
+            <p class="text-[0.65rem] font-bold tracking-[0.3em] uppercase text-seed-deep/60">Global Sustainability Lab</p>
         </header>
 
         <div class="glass-panel rounded-[2rem] p-8 sm:p-10 transition-all duration-500 relative overflow-hidden">
             
             <div id="input-section">
-                <label class="block text-sm font-medium mb-3 ml-1 tracking-wide uppercase text-xs opacity-70">Select Your Pencil Type</label>
-                
+                <label class="block text-sm font-medium mb-3 ml-1 tracking-wide uppercase text-xs opacity-70">Select Pencil Variety</label>
                 <div class="relative mb-8 group">
-                    <select id="seedSelect" class="w-full p-5 pr-12 rounded-2xl bg-white/90 border-2 border-transparent text-seed-deep font-serif text-xl focus:border-seed-sage/50 focus:ring-0 focus:bg-white outline-none cursor-pointer transition-all shadow-sm group-hover:shadow-md">
+                    <select id="seedSelect" class="w-full p-5 pr-12 rounded-2xl bg-white/90 border-2 border-transparent text-seed-deep font-serif text-xl focus:border-seed-sage/50 outline-none cursor-pointer shadow-sm">
                         <option value="tomato">🍅 Heirloom Tomato</option>
                         <option value="chilli">🌶️ Hot Chilli</option>
                         <option value="marigold">🌼 French Marigold</option>
@@ -88,216 +65,199 @@
                         <option value="basil">🍃 Genovese Basil</option>
                         <option value="spinach">🥬 Spinach (Palak)</option>
                     </select>
-                    <div class="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-seed-deep/40 transition-transform group-hover:translate-y-[-45%]">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-                    </div>
                 </div>
 
                 <div class="flex items-center gap-4 mb-10 p-5 bg-seed-sage/15 rounded-2xl border border-seed-sage/10">
-                    <div class="p-2.5 bg-white rounded-full shadow-sm text-seed-deep">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-                    </div>
+                    <div class="p-2.5 bg-white rounded-full shadow-sm">📍</div>
                     <div class="text-sm leading-tight">
-                        <p class="font-bold opacity-80 mb-0.5">Location Detected</p>
-                        <p class="opacity-60 font-medium">Manipal, Karnataka (IN)</p>
+                        <p class="font-bold opacity-80 mb-0.5">Garden Climate</p>
+                        <p id="location-name-ui" class="opacity-60 font-medium italic">Detecting garden...</p>
                     </div>
                 </div>
 
-                <button onclick="calculateImpact()" class="w-full py-5 rounded-full bg-seed-deep text-seed-cream font-bold text-lg shadow-[0_10px_30px_-10px_rgba(74,93,78,0.4)] hover:shadow-[0_15px_35px_-10px_rgba(74,93,78,0.5)] hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-300 flex justify-center items-center gap-3 group">
-                    <span>Analyze Environment</span>
-                    <svg class="group-hover:translate-x-1 transition-transform" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                <button onclick="calculateImpact()" class="w-full py-5 rounded-full bg-seed-deep text-seed-cream font-bold text-lg shadow-lg active:scale-[0.98] transition-all">
+                    Analyze My Garden
                 </button>
             </div>
 
             <div id="loading-section" class="hidden text-center py-16 animate-enter">
                 <div class="loading-spinner mx-auto mb-6"></div>
-                <h3 class="font-serif text-xl mb-2">Syncing with Nature</h3>
-                <p class="text-sm font-medium opacity-60">Consulting botanical models...</p>
+                <h3 class="font-serif text-xl mb-2">Consulting the Earth...</h3>
+                <p class="text-sm font-medium opacity-60">Syncing with atmospheric sensors.</p>
             </div>
 
             <div id="results-section" class="hidden animate-enter">
                 <div class="flex justify-between items-start mb-8 border-b border-seed-deep/10 pb-6">
                     <div>
                         <h2 class="font-serif text-3xl italic mb-1">Growth Forecast</h2>
-                        <p id="seed-name-display" class="text-xs uppercase tracking-wider opacity-50 font-bold">Your Seed</p>
+                        <p id="seed-name-display" class="text-xs uppercase font-bold opacity-50">Variety</p>
                     </div>
-                    <button onclick="resetApp()" class="px-4 py-2 rounded-full text-[10px] font-bold bg-seed-sage/20 hover:bg-seed-sage/30 transition-colors uppercase tracking-widest opacity-70 hover:opacity-100">Reset</button>
+                    <button onclick="resetApp()" class="px-4 py-2 rounded-full text-[10px] font-bold bg-seed-sage/20 uppercase opacity-70">Reset</button>
                 </div>
 
-                <div class="grid grid-cols-2 gap-5 mb-8">
+                <div class="grid grid-cols-2 gap-5 mb-6">
                     <div class="bg-white/60 p-5 rounded-[1.5rem] text-center shadow-sm">
-                        <p class="text-[0.65rem] uppercase tracking-widest opacity-60 mb-2 font-bold">Success Rate</p>
-                        <p id="success-val" class="text-4xl font-serif font-bold text-seed-deep">-</p>
+                        <p class="text-[0.65rem] uppercase font-bold opacity-40 mb-1">Success</p>
+                        <p id="success-val" class="text-4xl font-serif font-bold">-</p>
                     </div>
                     <div class="bg-white/60 p-5 rounded-[1.5rem] text-center shadow-sm">
-                        <p class="text-[0.65rem] uppercase tracking-widest opacity-60 mb-2 font-bold">Est. CO₂ Offset</p>
-                        <p id="co2-val" class="text-4xl font-serif font-bold text-seed-deep">-</p>
+                        <p class="text-[0.65rem] uppercase font-bold opacity-40 mb-1">CO₂ Impact</p>
+                        <p id="co2-val" class="text-4xl font-serif font-bold">-</p>
                     </div>
                 </div>
 
-                <div class="flex gap-4 mb-8 text-sm font-medium">
-                    <div class="flex-1 flex items-center justify-center gap-3 p-4 bg-seed-sage/15 rounded-2xl border border-seed-sage/10">
-                        <svg class="opacity-60" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"/><path d="M10 10h4"/></svg>
-                        <span id="temp-display">--°C</span>
+                <div id="mismatch-box" class="p-5 bg-seed-sage/10 rounded-3xl mb-6 space-y-3">
+                    <div class="flex justify-between text-xs font-bold uppercase opacity-60 tracking-wider">
+                        <span>Climate Metric</span>
+                        <span>Current Value</span>
                     </div>
-                    <div class="flex-1 flex items-center justify-center gap-3 p-4 bg-seed-sage/15 rounded-2xl border border-seed-sage/10">
-                         <svg class="opacity-60" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg>
-                        <span id="hum-display">--%</span>
+                    <div class="flex justify-between text-sm font-medium border-t border-seed-deep/5 pt-2">
+                        <span>🌡️ Temperature</span>
+                        <span id="temp-display">--</span>
                     </div>
+                    <div class="flex justify-between text-sm font-medium">
+                        <span>💧 Humidity</span>
+                        <span id="hum-display">--</span>
+                    </div>
+                    <p id="data-deep-dive" class="text-[10px] font-medium leading-relaxed italic opacity-70 pt-2 border-t border-seed-deep/5"></p>
                 </div>
 
-                <div class="bg-seed-deep text-seed-cream p-6 rounded-[1.5rem] relative overflow-hidden shadow-lg">
-                    <svg class="absolute top-0 right-0 opacity-10 pointer-events-none" width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke-width="0.5"/><path d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18Z" stroke-width="0.5"/></svg>
-                    
-                    <div class="relative z-10">
-                        <p class="text-[0.65rem] font-bold uppercase opacity-60 mb-3 tracking-widest flex items-center gap-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 12 2 2 4-4"/><path d="M5 7c0-1.1.9-2 2-2h10a2 2 0 0 1 2 2v12H5V7Z"/><path d="M22 19H2"/></svg>
-                            Smart Suggestion
-                        </p>
-                        <p id="suggestion-text" class="text-lg font-serif leading-relaxed italic opacity-95">
-                            "Loading..."
-                        </p>
-                    </div>
+                <div class="bg-seed-deep text-seed-cream p-6 rounded-[1.5rem] shadow-lg">
+                    <p class="text-[0.65rem] font-bold uppercase opacity-60 mb-3 tracking-widest">Digital Gardener's Wisdom</p>
+                    <p id="suggestion-text" class="text-lg font-serif leading-relaxed italic opacity-95">"Thinking..."</p>
                 </div>
             </div>
-
         </div>
-
-        <footer class="text-center mt-8 pb-4">
-            <p class="text-[10px] font-bold opacity-30 uppercase tracking-[0.2em]">Powered by OpenWeatherMap API</p>
-        </footer>
-
     </main>
 
     <script>
-        const API_KEY = 'dd28e0955cca98eeb8821425adb62c60'; 
-        const CITY = 'Manipal,IN';
+        const API_KEY = 'a762377e064d6c67247dd4b7e9e5c21c'; 
+        let globalWeatherData = null;
 
-        // --- ENHANCED BOTANICAL DATABASE ---
-        // carbonFactor: grams CO2 per year approx
         const seedKnowledge = {
-            tomato: { 
-                name: "Heirloom Tomato",
-                optTemp: [20, 29], optHum: 65, carbonFactor: 210,
-                tips: {
-                    hot: "Tomatoes stop setting fruit above 30°C. Move to afternoon shade.",
-                    humid: "High humidity causes blight. Prune lower leaves for airflow."
+            tomato: { name: "Heirloom Tomato", opt: [20, 29, 65], co2: 210, 
+                funFacts: "Tomatoes are divas. They want sun, but not too much heat!",
+                quirks: { 
+                    cold: "Brrr! Your Tomato is shivering. It won't grow in this chill—bring it inside to a warm windowsill ASAP.",
+                    hot: "Ouch! It's too hot to handle. Above 30°C, tomatoes literally go on strike and stop producing fruit. Use shade!",
+                    humid: "It's a sauna out here! High humidity is an invite for leaf fungi. Give this plant some elbow room for airflow."
                 }
             },
-            chilli: { 
-                name: "Hot Chilli",
-                optTemp: [25, 35], optHum: 60, carbonFactor: 180,
-                tips: {
-                    hot: "Chillies love this heat! Keep soil moist but not soggy.",
-                    humid: "Excellent conditions. Peppers thrive in this humidity."
+            chilli: { name: "Hot Chilli", opt: [25, 35, 60], co2: 180,
+                funFacts: "Chillies love to sweat. The hotter the climate, the hotter the fruit!",
+                quirks: {
+                    cold: "Ice, ice, baby? No thanks. Chillies are tropical souls. They'll go dormant if it's below 15°C.",
+                    hot: "Keep the spice coming! This heat is perfect, just don't let the soil turn into a desert.",
+                    humid: "Tropical vibes! Chillies love this humid air. They're practically on vacation."
                 }
             },
-            marigold: { 
-                name: "French Marigold",
-                optTemp: [18, 30], optHum: 50, carbonFactor: 120,
-                tips: {
-                    hot: "Marigolds are hardy, but 30°C+ stresses blooms. Water daily.",
-                    humid: "Watch for mildew on leaves. Avoid overhead watering."
+            marigold: { name: "French Marigold", opt: [18, 30, 50], co2: 120,
+                funFacts: "The best bodyguard for your garden. They scare away the bad bugs!",
+                quirks: {
+                    cold: "Marigolds are tough, but frost is their kryptonite. Cover them up at night!",
+                    hot: "Looking a bit crispy! 30°C+ stresses the blooms. Give them a long, deep drink at dawn.",
+                    humid: "Humidity alert! Watch out for white powdery stuff on the leaves. Keep the water off the foliage."
                 }
             },
-            coriander: { 
-                name: "Coriander",
-                optTemp: [15, 25], optHum: 40, carbonFactor: 80,
-                tips: {
-                    hot: "It is too hot! Coriander will 'bolt' (flower) instantly. Plant indoors.",
-                    humid: "Too humid. The delicate stems may rot. Use very sandy soil."
+            coriander: { name: "Coriander", opt: [15, 25, 40], co2: 80,
+                funFacts: "Coriander has a short temper. It loves the cool, but bolts when it's angry.",
+                quirks: {
+                    cold: "This is the sweet spot! Coriander thrives in this crisp air. It'll stay leafy and lush.",
+                    hot: "Panic mode! The second it hits 26°C, coriander decides to flower and die. Hide it in the deepest shade.",
+                    humid: "Yuck. Damp air makes the delicate stems rot. Use sandy soil and let it dry out between drinks."
                 }
             },
-            basil: { 
-                name: "Genovese Basil",
-                optTemp: [22, 32], optHum: 65, carbonFactor: 150,
-                tips: {
-                    hot: "Basil loves warmth, but harvest often to prevent flowering.",
-                    humid: "Good humidity for leaf growth. Keep harvesting!"
+            basil: { name: "Genovese Basil", opt: [22, 32, 65], co2: 150,
+                funFacts: "The king of herbs. Basil literally means 'Royal' in Greek!",
+                quirks: {
+                    cold: "Basil will turn black and sulk if it's below 12°C. It's an indoor herb until the sun comes back.",
+                    hot: "Loves the tan! Just keep picking the top leaves so it doesn't try to flower too early.",
+                    humid: "Spa day! High humidity means huge, floppy, delicious leaves. This is peak pesto weather."
                 }
             },
-            spinach: { 
-                name: "Spinach",
-                optTemp: [10, 24], optHum: 50, carbonFactor: 90,
-                tips: {
-                    hot: "Critical Heat Alert! Spinach fails above 26°C. Use 100% shade.",
-                    humid: "Leaves may yellow in this dampness. Ensure pot drains fast."
+            spinach: { name: "Spinach", opt: [10, 24, 50], co2: 90,
+                funFacts: "The world's healthiest green. It loves the cold more than a penguin!",
+                quirks: {
+                    cold: "Heaven! Spinach is at its best when you're wearing a sweater. It'll grow like crazy.",
+                    hot: "Abort mission! Spinach hates the heat. If it's over 24°C, it'll bolt into seeds in 48 hours.",
+                    humid: "Damp feet alert. Spinach roots hate sitting in puddles. Ensure your pot has big drainage holes!"
                 }
             }
         };
+
+        async function initLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(async (pos) => {
+                    const { latitude, longitude } = pos.coords;
+                    const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${API_KEY}`);
+                    globalWeatherData = await res.json();
+                    document.getElementById('location-name-ui').innerText = `${globalWeatherData.name}, ${globalWeatherData.sys.country}`;
+                }, () => {
+                    document.getElementById('location-name-ui').innerText = "Manipal, Karnataka (IN)";
+                });
+            }
+        }
 
         async function calculateImpact() {
             document.getElementById('input-section').classList.add('hidden');
             document.getElementById('loading-section').classList.remove('hidden');
 
-            const seedType = document.getElementById('seedSelect').value;
-            const seed = seedKnowledge[seedType];
+            const seed = seedKnowledge[document.getElementById('seedSelect').value];
             document.getElementById('seed-name-display').innerText = seed.name;
 
-            try {
-                const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${CITY}&units=metric&appid=${API_KEY}`);
-                if (!response.ok) throw new Error(response.status);
-                const data = await response.json();
-                
-                const temp = data.main.temp;
-                const hum = data.main.humidity;
-                
-                // --- ADVANCED HEURISTIC ENGINE ---
-                let probability = 98; 
-                let suggestion = "";
-
-                // 1. Temperature Calculation
-                if (temp < seed.optTemp[0]) {
-                    // Too Cold
-                    probability -= Math.pow(seed.optTemp[0] - temp, 1.5);
-                    suggestion = "It's a bit chilly for this variety. Use a greenhouse cover.";
-                } else if (temp > seed.optTemp[1]) {
-                    // Too Hot
-                    probability -= Math.pow(temp - seed.optTemp[1], 1.5);
-                    suggestion = seed.tips.hot;
-                }
-
-                // 2. Humidity Calculation
-                if (Math.abs(hum - seed.optHum) > 15) {
-                    probability -= (Math.abs(hum - seed.optHum) / 3);
-                    // Only overwrite temp suggestion if humidity issue is severe
-                    if (hum > 80) suggestion = seed.tips.humid; 
-                }
-
-                // 3. Perfect Condition Override
-                if (temp >= seed.optTemp[0] && temp <= seed.optTemp[1] && Math.abs(hum - seed.optHum) < 15) {
-                    suggestion = `Perfect conditions! Your ${seed.name} will germinate rapidly in this weather.`;
-                }
-
-                // 4. Critical Failure Override (e.g. Spinach in 35C)
-                if (probability < 40) {
-                    suggestion = `Current weather is harsh for ${seed.name}. ${suggestion}`;
-                }
-
-                // Clamp & Calculate
-                probability = Math.min(Math.max(probability, 10), 99);
-                const co2Total = (seed.carbonFactor * 365 * (probability / 100)).toFixed(1);
-
-                setTimeout(() => {
-                    renderResults(probability, co2Total, temp, hum, suggestion);
-                }, 1200);
-
-            } catch (error) {
-                console.error(error);
-                setTimeout(() => { renderResults(88, 210, 29, 78, "Simulated: Weather API unavailable."); }, 1500);
+            if (!globalWeatherData) {
+                const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=Manipal,IN&units=metric&appid=${API_KEY}`);
+                globalWeatherData = await res.json();
             }
+
+            processFinalLogic(globalWeatherData, seed);
         }
 
-        function renderResults(prob, co2, temp, hum, suggestion) {
-            document.getElementById('loading-section').classList.add('hidden');
-            document.getElementById('results-section').classList.remove('hidden');
-            
-            document.getElementById('temp-display').innerText = `${Math.round(temp)}°C`;
-            document.getElementById('hum-display').innerText = `${hum}%`;
-            document.getElementById('suggestion-text').innerText = `"${suggestion}"`;
-            
-            animateValue("success-val", 0, Math.round(prob), 1200, "%");
-            animateValue("co2-val", 0, co2, 1500, "g");
+        function processFinalLogic(data, seed) {
+            const temp = data.main.temp;
+            const hum = data.main.humidity;
+            let prob = 98;
+            let suggestion = `Conditions in ${data.name} are actually perfect! Your ${seed.name} is going to be a superstar. ${seed.funFacts}`;
+            let deepDive = `Environmental Sync: `;
+
+            // TEMP SPECTRUM
+            if (temp < seed.opt[0]) {
+                const delta = (seed.opt[0] - temp).toFixed(1);
+                prob -= Math.pow(delta, 1.6);
+                suggestion = seed.quirks.cold;
+                deepDive += `Temperature is ${delta}°C too cold. `;
+            } else if (temp > seed.opt[1]) {
+                const delta = (temp - seed.opt[1]).toFixed(1);
+                prob -= Math.pow(delta, 1.6);
+                suggestion = seed.quirks.hot;
+                deepDive += `Temperature is ${delta}°C too hot. `;
+            } else {
+                deepDive += `Temperature is optimal (${Math.round(temp)}°C). `;
+            }
+
+            // HUMIDITY SPECTRUM
+            const humDelta = Math.abs(hum - seed.opt[2]);
+            if (humDelta > 20) {
+                prob -= 12;
+                deepDive += `Humidity gap is ${humDelta}% wide. `;
+                if (hum > 80) suggestion = seed.quirks.humid;
+            } else {
+                deepDive += `Humidity is spot-on. `;
+            }
+
+            prob = Math.min(Math.max(prob, 8), 99);
+            const co2 = (seed.co2 * (prob / 100) * 1.6).toFixed(0);
+
+            setTimeout(() => {
+                document.getElementById('loading-section').classList.add('hidden');
+                document.getElementById('results-section').classList.remove('hidden');
+                document.getElementById('temp-display').innerText = `${Math.round(temp)}°C`;
+                document.getElementById('hum-display').innerText = `${hum}%`;
+                document.getElementById('data-deep-dive').innerText = deepDive;
+                document.getElementById('suggestion-text').innerText = `"${suggestion}"`;
+                animateValue("success-val", 0, Math.round(prob), 1200, "%");
+                animateValue("co2-val", 0, co2, 1500, "g");
+            }, 1200);
         }
 
         function animateValue(id, start, end, duration, suffix) {
@@ -307,8 +267,7 @@
                 if (!startTimestamp) startTimestamp = timestamp;
                 const progress = Math.min((timestamp - startTimestamp) / duration, 1);
                 const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-                let currentVal = Math.floor(easeOutQuart * (end - start) + start);
-                obj.innerHTML = currentVal + suffix;
+                obj.innerHTML = Math.floor(easeOutQuart * (end - start) + start) + suffix;
                 if (progress < 1) window.requestAnimationFrame(step);
                 else obj.innerHTML = end + suffix;
             };
