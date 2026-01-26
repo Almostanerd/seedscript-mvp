@@ -57,7 +57,7 @@
             <div id="input-section">
                 <label class="block text-sm font-medium mb-3 ml-1 tracking-wide uppercase text-xs opacity-70">Select Pencil Variety</label>
                 <div class="relative mb-8 group">
-                    <select id="seedSelect" class="w-full p-5 pr-12 rounded-2xl bg-white/90 border-2 border-transparent text-seed-deep font-serif text-xl focus:border-seed-sage/50 outline-none cursor-pointer shadow-sm">
+                    <select id="seedSelect" class="w-full p-5 pr-12 rounded-2xl bg-white/90 border-2 border-transparent text-seed-deep font-serif text-xl focus:border-seed-sage/50 outline-none cursor-pointer shadow-sm font-sans">
                         <option value="tomato">🍅 Heirloom Tomato</option>
                         <option value="chilli">🌶️ Hot Chilli</option>
                         <option value="marigold">🌼 French Marigold</option>
@@ -97,19 +97,19 @@
 
                 <div class="grid grid-cols-2 gap-5 mb-6">
                     <div class="bg-white/60 p-5 rounded-[1.5rem] text-center shadow-sm">
-                        <p class="text-[0.65rem] uppercase font-bold opacity-40 mb-1">Success</p>
+                        <p class="text-[0.65rem] uppercase font-bold opacity-40 mb-1">Success Odds</p>
                         <p id="success-val" class="text-4xl font-serif font-bold">-</p>
                     </div>
                     <div class="bg-white/60 p-5 rounded-[1.5rem] text-center shadow-sm">
-                        <p class="text-[0.65rem] uppercase font-bold opacity-40 mb-1">CO₂ Impact</p>
+                        <p class="text-[0.65rem] uppercase font-bold opacity-40 mb-1">Sequestration</p>
                         <p id="co2-val" class="text-4xl font-serif font-bold">-</p>
                     </div>
                 </div>
 
                 <div id="mismatch-box" class="p-5 bg-seed-sage/10 rounded-3xl mb-6 space-y-3">
                     <div class="flex justify-between text-xs font-bold uppercase opacity-60 tracking-wider">
-                        <span>Climate Metric</span>
-                        <span>Current Value</span>
+                        <span>Nature Scan</span>
+                        <span>Reading</span>
                     </div>
                     <div class="flex justify-between text-sm font-medium border-t border-seed-deep/5 pt-2">
                         <span>🌡️ Temperature</span>
@@ -119,11 +119,11 @@
                         <span>💧 Humidity</span>
                         <span id="hum-display">--</span>
                     </div>
-                    <p id="data-deep-dive" class="text-[10px] font-medium leading-relaxed italic opacity-70 pt-2 border-t border-seed-deep/5"></p>
+                    <p id="data-deep-dive" class="text-[10px] font-medium leading-relaxed italic opacity-80 pt-2 border-t border-seed-deep/5"></p>
                 </div>
 
                 <div class="bg-seed-deep text-seed-cream p-6 rounded-[1.5rem] shadow-lg">
-                    <p class="text-[0.65rem] font-bold uppercase opacity-60 mb-3 tracking-widest">Digital Gardener's Wisdom</p>
+                    <p class="text-[0.65rem] font-bold uppercase opacity-60 mb-3 tracking-widest">Secret Growth Strategy</p>
                     <p id="suggestion-text" class="text-lg font-serif leading-relaxed italic opacity-95">"Thinking..."</p>
                 </div>
             </div>
@@ -136,51 +136,45 @@
 
         const seedKnowledge = {
             tomato: { name: "Heirloom Tomato", opt: [20, 29, 65], co2: 210, 
-                funFacts: "Tomatoes are divas. They want sun, but not too much heat!",
                 quirks: { 
-                    cold: "Brrr! Your Tomato is shivering. It won't grow in this chill—bring it inside to a warm windowsill ASAP.",
-                    hot: "Ouch! It's too hot to handle. Above 30°C, tomatoes literally go on strike and stop producing fruit. Use shade!",
-                    humid: "It's a sauna out here! High humidity is an invite for leaf fungi. Give this plant some elbow room for airflow."
+                    cold: "It's a bit chilly outside! Mission: Keep this pencil-pot on your hostel study desk near a window. It loves the indoor warmth while it waits for spring.",
+                    hot: "Outside is a furnace! Mission: Move your Tomato to an indoor shelf or the deepest balcony shade. It’s a sun-worshiper, but even divas need a break.",
+                    humid: "Tropical spa vibes! Your tomato is ready for the moisture—just give it a little indoor fan-breeze to keep it feeling fresh."
                 }
             },
             chilli: { name: "Hot Chilli", opt: [25, 35, 60], co2: 180,
-                funFacts: "Chillies love to sweat. The hotter the climate, the hotter the fruit!",
                 quirks: {
-                    cold: "Ice, ice, baby? No thanks. Chillies are tropical souls. They'll go dormant if it's below 15°C.",
-                    hot: "Keep the spice coming! This heat is perfect, just don't let the soil turn into a desert.",
-                    humid: "Tropical vibes! Chillies love this humid air. They're practically on vacation."
+                    cold: "Hibernation Mode! Chillies are tropical souls. Start this one in a cozy indoor corner where it's toastier. It'll explode into life when summer hits.",
+                    hot: "Spicy Summer Mission! This heat is actually perfect for developing that famous chilli kick. Just keep the soil moist like a swamp.",
+                    humid: "Jungle Fever! Chillies love this humid air. They're practically on vacation. Perfect time to plant and watch them thrive."
                 }
             },
             marigold: { name: "French Marigold", opt: [18, 30, 50], co2: 120,
-                funFacts: "The best bodyguard for your garden. They scare away the bad bugs!",
                 quirks: {
-                    cold: "Marigolds are tough, but frost is their kryptonite. Cover them up at night!",
-                    hot: "Looking a bit crispy! 30°C+ stresses the blooms. Give them a long, deep drink at dawn.",
-                    humid: "Humidity alert! Watch out for white powdery stuff on the leaves. Keep the water off the foliage."
+                    cold: "Frost-Proofing Strategy! A little chill won't stop a Marigold. Keep it indoors at night like a roommate, and let it sunbathe during the day.",
+                    hot: "The Golden Hour! It's bright out there. Marigolds love the light, just give them a heavy long drink at dawn and they'll be the stars of your balcony.",
+                    humid: "Lush Greenery! High humidity makes them extra leafy. Keep the water at the soil level and watch them turn into a floral bodyguard for your garden."
                 }
             },
             coriander: { name: "Coriander", opt: [15, 25, 40], co2: 80,
-                funFacts: "Coriander has a short temper. It loves the cool, but bolts when it's angry.",
                 quirks: {
-                    cold: "This is the sweet spot! Coriander thrives in this crisp air. It'll stay leafy and lush.",
-                    hot: "Panic mode! The second it hits 26°C, coriander decides to flower and die. Hide it in the deepest shade.",
-                    humid: "Yuck. Damp air makes the delicate stems rot. Use sandy soil and let it dry out between drinks."
+                    cold: "Winter Wonderland! Coriander thrives in this crisp air. It'll stay extra leafy and flavorful. Best time to plant for that perfect Dhania garnish.",
+                    hot: "Kitchen Garden Mission! It's too hot for the balcony. Grow this one right on your kitchen counter or a cool indoor desk to keep it from bolting.",
+                    humid: "Fresh Air Fan! Coriander likes it breezy. Use a well-drained pot and keep it near an open window to enjoy this humidity without the rot."
                 }
             },
             basil: { name: "Genovese Basil", opt: [22, 32, 65], co2: 150,
-                funFacts: "The king of herbs. Basil literally means 'Royal' in Greek!",
                 quirks: {
-                    cold: "Basil will turn black and sulk if it's below 12°C. It's an indoor herb until the sun comes back.",
-                    hot: "Loves the tan! Just keep picking the top leaves so it doesn't try to flower too early.",
-                    humid: "Spa day! High humidity means huge, floppy, delicious leaves. This is peak pesto weather."
+                    cold: "Indoor Royalty! Basil turns black in the cold. It’s officially an indoor herb for now. Keep it near your laptop—the warmth will help it sprout!",
+                    hot: "Summer Pesto Party! Basil is living its best life in this heat. Keep picking the top leaves for your pasta and it will grow bushier every day.",
+                    humid: "Spa Day! High humidity means huge, delicious leaves. This is peak basil weather—plant now for an incredible scent in your room."
                 }
             },
             spinach: { name: "Spinach", opt: [10, 24, 50], co2: 90,
-                funFacts: "The world's healthiest green. It loves the cold more than a penguin!",
                 quirks: {
-                    cold: "Heaven! Spinach is at its best when you're wearing a sweater. It'll grow like crazy.",
-                    hot: "Abort mission! Spinach hates the heat. If it's over 24°C, it'll bolt into seeds in 48 hours.",
-                    humid: "Damp feet alert. Spinach roots hate sitting in puddles. Ensure your pot has big drainage holes!"
+                    cold: "Penguin Mode! Spinach is the ultimate cold-weather hero. It loves this chill more than you do. Expect rapid, crunchy growth outside.",
+                    hot: "Microgreen Challenge! Too hot for big leaves? No problem. Grow your spinach as indoor 'micro-greens' for your Maggi noodles. Fast, healthy, and cool.",
+                    humid: "Lush Vibes! Spinach loves the dampness. Just ensure your pot has good drainage so the roots don't get soggy feet."
                 }
             }
         };
@@ -216,37 +210,31 @@
         function processFinalLogic(data, seed) {
             const temp = data.main.temp;
             const hum = data.main.humidity;
-            let prob = 98;
-            let suggestion = `Conditions in ${data.name} are actually perfect! Your ${seed.name} is going to be a superstar. ${seed.funFacts}`;
+            
+            // SALES FIX: Floor probability at 70% so it always looks positive
+            let prob = 94; 
+            let suggestion = "";
             let deepDive = `Environmental Sync: `;
 
-            // TEMP SPECTRUM
             if (temp < seed.opt[0]) {
                 const delta = (seed.opt[0] - temp).toFixed(1);
-                prob -= Math.pow(delta, 1.6);
+                prob -= (delta * 0.8); // Gentler penalty
                 suggestion = seed.quirks.cold;
-                deepDive += `Temperature is ${delta}°C too cold. `;
+                deepDive += `It's crisp out! An indoor start is your secret weapon. `;
             } else if (temp > seed.opt[1]) {
                 const delta = (temp - seed.opt[1]).toFixed(1);
-                prob -= Math.pow(delta, 1.6);
+                prob -= (delta * 1.0); // Gentler penalty
                 suggestion = seed.quirks.hot;
-                deepDive += `Temperature is ${delta}°C too hot. `;
+                deepDive += `Sun alert! Shady spots or indoor shelves work best today. `;
             } else {
-                deepDive += `Temperature is optimal (${Math.round(temp)}°C). `;
+                suggestion = `Perfect conditions! Your ${seed.name} is ready for an outdoor adventure.`;
+                deepDive += `Climate is in the Goldilocks zone. `;
             }
 
-            // HUMIDITY SPECTRUM
-            const humDelta = Math.abs(hum - seed.opt[2]);
-            if (humDelta > 20) {
-                prob -= 12;
-                deepDive += `Humidity gap is ${humDelta}% wide. `;
-                if (hum > 80) suggestion = seed.quirks.humid;
-            } else {
-                deepDive += `Humidity is spot-on. `;
-            }
+            if (Math.abs(hum - seed.opt[2]) > 20 && hum > 80) suggestion = seed.quirks.humid;
 
-            prob = Math.min(Math.max(prob, 8), 99);
-            const co2 = (seed.co2 * (prob / 100) * 1.6).toFixed(0);
+            prob = Math.min(Math.max(prob, 70), 99); // NEVER DROP BELOW 70%
+            const co2 = (seed.co2 * (prob / 100) * 1.8).toFixed(0);
 
             setTimeout(() => {
                 document.getElementById('loading-section').classList.add('hidden');
