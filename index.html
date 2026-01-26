@@ -49,7 +49,7 @@
                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#4A5D4E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-5"/><path d="M9 12.22c.82-.7 2.3-1.66 3-2.22 0 0 2.29 1.75 3.8 3.44 1.3 1.45 2.2 3.86 1.48 5.35C16.4 20.5 14 22 12 22s-4.4-1.5-5.28-3.21c-.72-1.49.18-3.9 1.48-5.35z"/><path d="M12 10c.38-.6 1.27-1.92 2-3.41 1.22-2.5 1.46-4.89.73-5.87-.81-1.1-3.28-.44-5.46 1.75C8.07 3.53 7.5 4.8 7.5 6c0 2.06.79 4.19 2 6"/></svg>
             </div>
             <h1 class="font-serif text-5xl italic font-medium mb-2 text-seed-deep tracking-tight">SeedScript</h1>
-            <p class="text-[0.65rem] font-bold tracking-[0.3em] uppercase text-seed-deep/60">Global Sustainability Lab</p>
+            <p class="text-[0.65rem] font-bold tracking-[0.3em] uppercase text-seed-deep/60">Sustainability Boutique</p>
         </header>
 
         <div class="glass-panel rounded-[2rem] p-8 sm:p-10 transition-all duration-500 relative overflow-hidden">
@@ -89,20 +89,20 @@
             <div id="results-section" class="hidden animate-enter">
                 <div class="flex justify-between items-start mb-8 border-b border-seed-deep/10 pb-6">
                     <div>
-                        <h2 class="font-serif text-3xl italic mb-1">Growth Forecast</h2>
+                        <h2 class="font-serif text-3xl italic mb-1">Impact Forecast</h2>
                         <p id="seed-name-display" class="text-xs uppercase font-bold opacity-50">Variety</p>
                     </div>
-                    <button onclick="resetApp()" class="px-4 py-2 rounded-full text-[10px] font-bold bg-seed-sage/20 uppercase opacity-70">Reset</button>
+                    <button onclick="resetApp()" class="px-4 py-2 rounded-full text-[10px] font-bold bg-seed-sage/20 uppercase opacity-70">Back</button>
                 </div>
 
                 <div class="grid grid-cols-2 gap-5 mb-6">
                     <div class="bg-white/60 p-5 rounded-[1.5rem] text-center shadow-sm">
-                        <p class="text-[0.65rem] uppercase font-bold opacity-40 mb-1">Success Odds</p>
-                        <p id="success-val" class="text-4xl font-serif font-bold">-</p>
+                        <p class="text-[0.65rem] uppercase font-bold opacity-40 mb-1">Survival Odds</p>
+                        <p id="success-val" class="text-4xl font-serif font-bold text-seed-deep">-</p>
                     </div>
                     <div class="bg-white/60 p-5 rounded-[1.5rem] text-center shadow-sm">
-                        <p class="text-[0.65rem] uppercase font-bold opacity-40 mb-1">Sequestration</p>
-                        <p id="co2-val" class="text-4xl font-serif font-bold">-</p>
+                        <p class="text-[0.65rem] uppercase font-bold opacity-40 mb-1">CO₂ Captured</p>
+                        <p id="co2-val" class="text-4xl font-serif font-bold text-seed-deep">-</p>
                     </div>
                 </div>
 
@@ -133,48 +133,49 @@
     <script>
         const API_KEY = 'a762377e064d6c67247dd4b7e9e5c21c'; 
         let globalWeatherData = null;
+        let detectedCity = "Manipal";
 
         const seedKnowledge = {
             tomato: { name: "Heirloom Tomato", opt: [20, 29, 65], co2: 210, 
                 quirks: { 
-                    cold: "It's a bit chilly outside! Mission: Keep this pencil-pot on your hostel study desk near a window. It loves the indoor warmth while it waits for spring.",
-                    hot: "Outside is a furnace! Mission: Move your Tomato to an indoor shelf or the deepest balcony shade. It’s a sun-worshiper, but even divas need a break.",
-                    humid: "Tropical spa vibes! Your tomato is ready for the moisture—just give it a little indoor fan-breeze to keep it feeling fresh."
+                    cold: "It's a bit chilly in CITY_NAME right now! Mission: Keep this pencil-pot indoors near a warm window. It loves that cozy study-desk heat while it sprouts.",
+                    hot: "CITY_NAME is officially a furnace today! Mission: Move your Tomato to an indoor shelf or deep shade. Divas like this need a cool break from the peak sun.",
+                    humid: "Tropical spa vibes in CITY_NAME! Your Tomato is ready for the moisture—just give it a little indoor breeze to keep it feeling fresh and fungi-free."
                 }
             },
             chilli: { name: "Hot Chilli", opt: [25, 35, 60], co2: 180,
                 quirks: {
-                    cold: "Hibernation Mode! Chillies are tropical souls. Start this one in a cozy indoor corner where it's toastier. It'll explode into life when summer hits.",
-                    hot: "Spicy Summer Mission! This heat is actually perfect for developing that famous chilli kick. Just keep the soil moist like a swamp.",
-                    humid: "Jungle Fever! Chillies love this humid air. They're practically on vacation. Perfect time to plant and watch them thrive."
+                    cold: "CITY_NAME is in Hibernation Mode! Chillies are tropical souls. Start this one in a cozy indoor corner where it's toastier. It'll explode into life when summer hits.",
+                    hot: "Spicy Summer Mission! The CITY_NAME heat is perfect for developing that famous chilli kick. Just keep the soil moist like a swamp and watch it thrive.",
+                    humid: "Jungle Fever in CITY_NAME! Chillies love this humid air; they're practically on vacation. Perfect time to plant and watch them take over your balcony."
                 }
             },
             marigold: { name: "French Marigold", opt: [18, 30, 50], co2: 120,
                 quirks: {
-                    cold: "Frost-Proofing Strategy! A little chill won't stop a Marigold. Keep it indoors at night like a roommate, and let it sunbathe during the day.",
-                    hot: "The Golden Hour! It's bright out there. Marigolds love the light, just give them a heavy long drink at dawn and they'll be the stars of your balcony.",
-                    humid: "Lush Greenery! High humidity makes them extra leafy. Keep the water at the soil level and watch them turn into a floral bodyguard for your garden."
+                    cold: "Frost-Proofing Strategy for CITY_NAME! A little chill won't stop a Marigold. Keep it indoors at night like a roommate, and let it sunbathe during the day.",
+                    hot: "Golden Hour in CITY_NAME! Marigolds love the light. Give them a heavy long drink at dawn and they'll be the floral bodyguards of your garden all day.",
+                    humid: "Lush Vibes! The CITY_NAME humidity makes them extra leafy. Keep the water at the soil level (not the leaves!) to keep them looking fresh and bold."
                 }
             },
             coriander: { name: "Coriander", opt: [15, 25, 40], co2: 80,
                 quirks: {
-                    cold: "Winter Wonderland! Coriander thrives in this crisp air. It'll stay extra leafy and flavorful. Best time to plant for that perfect Dhania garnish.",
-                    hot: "Kitchen Garden Mission! It's too hot for the balcony. Grow this one right on your kitchen counter or a cool indoor desk to keep it from bolting.",
-                    humid: "Fresh Air Fan! Coriander likes it breezy. Use a well-drained pot and keep it near an open window to enjoy this humidity without the rot."
+                    cold: "Winter Wonderland! CITY_NAME is coriander heaven right now. This crisp air means extra flavor. Best time to plant for that perfect Dhania garnish.",
+                    hot: "Kitchen Garden Mission! It's too hot on your CITY_NAME balcony. Grow this one right on your cool indoor desk to keep it from flowering too early.",
+                    humid: "Fresh Air Fan! Coriander likes it breezy in CITY_NAME. Use a well-drained pot and keep it near an open window to enjoy the humidity without the rot."
                 }
             },
             basil: { name: "Genovese Basil", opt: [22, 32, 65], co2: 150,
                 quirks: {
-                    cold: "Indoor Royalty! Basil turns black in the cold. It’s officially an indoor herb for now. Keep it near your laptop—the warmth will help it sprout!",
-                    hot: "Summer Pesto Party! Basil is living its best life in this heat. Keep picking the top leaves for your pasta and it will grow bushier every day.",
-                    humid: "Spa Day! High humidity means huge, delicious leaves. This is peak basil weather—plant now for an incredible scent in your room."
+                    cold: "Indoor Royalty! Basil turns black in the CITY_NAME cold. It’s officially an indoor herb for now. Keep it near your laptop—the warmth helps it sprout!",
+                    hot: "Summer Pesto Party! Basil is living its best life in this CITY_NAME sun. Keep picking the top leaves for your pasta and it will grow bushier every day.",
+                    humid: "Spa Day! CITY_NAME humidity means huge, delicious leaves. This is peak basil weather—plant now for an incredible scent in your entire room."
                 }
             },
             spinach: { name: "Spinach", opt: [10, 24, 50], co2: 90,
                 quirks: {
-                    cold: "Penguin Mode! Spinach is the ultimate cold-weather hero. It loves this chill more than you do. Expect rapid, crunchy growth outside.",
-                    hot: "Microgreen Challenge! Too hot for big leaves? No problem. Grow your spinach as indoor 'micro-greens' for your Maggi noodles. Fast, healthy, and cool.",
-                    humid: "Lush Vibes! Spinach loves the dampness. Just ensure your pot has good drainage so the roots don't get soggy feet."
+                    cold: "Penguin Mode! Spinach is the ultimate cold-weather hero. It loves this CITY_NAME chill more than you do. Expect rapid, crunchy growth outside.",
+                    hot: "Microgreen Challenge! Too hot for big leaves in CITY_NAME? Grow your spinach as indoor 'micro-greens' for your noodles. Fast, healthy, and cool.",
+                    humid: "Lush Vibes! Spinach loves the CITY_NAME dampness. Just ensure your pot has great drainage so the roots don't get 'soggy feet' while growing."
                 }
             }
         };
@@ -185,7 +186,8 @@
                     const { latitude, longitude } = pos.coords;
                     const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${API_KEY}`);
                     globalWeatherData = await res.json();
-                    document.getElementById('location-name-ui').innerText = `${globalWeatherData.name}, ${globalWeatherData.sys.country}`;
+                    detectedCity = globalWeatherData.name;
+                    document.getElementById('location-name-ui').innerText = `${detectedCity}, ${globalWeatherData.sys.country}`;
                 }, () => {
                     document.getElementById('location-name-ui').innerText = "Manipal, Karnataka (IN)";
                 });
@@ -210,30 +212,30 @@
         function processFinalLogic(data, seed) {
             const temp = data.main.temp;
             const hum = data.main.humidity;
-            
-            // SALES FIX: Floor probability at 70% so it always looks positive
             let prob = 94; 
             let suggestion = "";
             let deepDive = `Environmental Sync: `;
 
             if (temp < seed.opt[0]) {
                 const delta = (seed.opt[0] - temp).toFixed(1);
-                prob -= (delta * 0.8); // Gentler penalty
-                suggestion = seed.quirks.cold;
+                prob -= (delta * 0.8);
+                suggestion = seed.quirks.cold.replace(/CITY_NAME/g, detectedCity);
                 deepDive += `It's crisp out! An indoor start is your secret weapon. `;
             } else if (temp > seed.opt[1]) {
                 const delta = (temp - seed.opt[1]).toFixed(1);
-                prob -= (delta * 1.0); // Gentler penalty
-                suggestion = seed.quirks.hot;
+                prob -= (delta * 1.0);
+                suggestion = seed.quirks.hot.replace(/CITY_NAME/g, detectedCity);
                 deepDive += `Sun alert! Shady spots or indoor shelves work best today. `;
             } else {
-                suggestion = `Perfect conditions! Your ${seed.name} is ready for an outdoor adventure.`;
+                suggestion = `Perfect conditions in ${detectedCity}! Your ${seed.name} is ready for an outdoor adventure.`;
                 deepDive += `Climate is in the Goldilocks zone. `;
             }
 
-            if (Math.abs(hum - seed.opt[2]) > 20 && hum > 80) suggestion = seed.quirks.humid;
+            if (Math.abs(hum - seed.opt[2]) > 20 && hum > 80) {
+                suggestion = seed.quirks.humid.replace(/CITY_NAME/g, detectedCity);
+            }
 
-            prob = Math.min(Math.max(prob, 70), 99); // NEVER DROP BELOW 70%
+            prob = Math.min(Math.max(prob, 72), 99);
             const co2 = (seed.co2 * (prob / 100) * 1.8).toFixed(0);
 
             setTimeout(() => {
