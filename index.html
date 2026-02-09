@@ -139,7 +139,7 @@
                 quirks: {
                     cold: "CITY_NAME is giving frost-bitten vibes! Marigolds are sun-seekers. Keep your pencil-pot on a sunny windowsill until the morning air warms up.",
                     hot: "Goldilocks Alert! CITY_NAME is a bit too toasty. Give these golden guardians a long drink at dawn and some afternoon shade to keep them mellow.",
-                    humid: "Lush Living! Humidity in CITY_NAME is high, which Marigolds tolerate well. Just make sure they have a 'breezy' spot to avoid any petal-mold."
+                    humid: "Lush Living! Humidity in CITY_NAME is high. These Marigolds love it, but make sure they have a 'breezy' spot to keep their petals perfect."
                 }
             },
             carrot: { name: "Candid Carrot", opt: [12, 22, 45], co2: 95,
@@ -167,7 +167,7 @@
                 quirks: {
                     cold: "Crisp & Clever! Coriander thinks CITY_NAME is perfect right now. This cool air prevents it from flowering too early, giving you more leaves for your tacos.",
                     hot: "Bolt Alert! It's too hot in CITY_NAME. Your coriander might try to turn into a flower immediately. Keep it in the fridge-door-cool parts of your home.",
-                    humid: "Aromatic Air! The moisture in CITY_NAME helps the essential oils develop. Your room will smell amazing, but don't overwater the soil—mist the air instead!"
+                    humid: "Aromatic Air! The moisture in CITY_NAME helps the essential oils develop. Your room will smell amazing, but mist the air instead of soaking soil!"
                 }
             }
         };
@@ -210,24 +210,24 @@
 
             if (temp < seed.opt[0]) {
                 const delta = (seed.opt[0] - temp).toFixed(1);
-                prob -= (delta * 1.2); // Slightly higher penalty for cold-sensitive items
+                prob -= (delta * 0.8);
                 suggestion = seed.quirks.cold.replace(/CITY_NAME/g, detectedCity);
-                deepDive += `It's quite brisk! This variety needs a warm 'indoor hug' to start. `;
+                deepDive += `It's crisp out! An indoor start is your secret weapon. `;
             } else if (temp > seed.opt[1]) {
                 const delta = (temp - seed.opt[1]).toFixed(1);
-                prob -= (delta * 1.5); // Higher penalty for heat-induced bolting
+                prob -= (delta * 1.0);
                 suggestion = seed.quirks.hot.replace(/CITY_NAME/g, detectedCity);
-                deepDive += `Heatwave detected! Afternoon shade is non-negotiable today. `;
+                deepDive += `Sun alert! Shady spots or indoor shelves work best today. `;
             } else {
                 suggestion = `Perfect conditions in ${detectedCity}! Your ${seed.name} is ready for an outdoor adventure.`;
                 deepDive += `Climate is in the Goldilocks zone. `;
             }
 
-            if (Math.abs(hum - seed.opt[2]) > 25 && hum > 75) {
+            if (Math.abs(hum - seed.opt[2]) > 20 && hum > 80) {
                 suggestion = seed.quirks.humid.replace(/CITY_NAME/g, detectedCity);
             }
 
-            prob = Math.min(Math.max(prob, 65), 98);
+            prob = Math.min(Math.max(prob, 72), 99);
             const co2 = (seed.co2 * (prob / 100) * 1.8).toFixed(0);
 
             setTimeout(() => {
