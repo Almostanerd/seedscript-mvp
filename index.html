@@ -58,12 +58,11 @@
                 <label class="block text-sm font-medium mb-3 ml-1 tracking-wide uppercase text-xs opacity-70">Select Pencil Variety</label>
                 <div class="relative mb-8 group">
                     <select id="seedSelect" class="w-full p-5 pr-12 rounded-2xl bg-white/90 border-2 border-transparent text-seed-deep font-serif text-xl focus:border-seed-sage/50 outline-none cursor-pointer shadow-sm font-sans">
-                        <option value="tomato">🍅 Heirloom Tomato</option>
-                        <option value="chilli">🌶️ Hot Chilli</option>
-                        <option value="marigold">🌼 French Marigold</option>
-                        <option value="coriander">🌿 Coriander (Dhania)</option>
-                        <option value="basil">🍃 Genovese Basil</option>
-                        <option value="spinach">🥬 Spinach (Palak)</option>
+                        <option value="marigold">🌼 Mellow Marigold</option>
+                        <option value="carrot">🥕 Candid Carrot</option>
+                        <option value="beans">🫘 Bountiful Beans</option>
+                        <option value="fenugreek">🍃 Feisty Fenugreek</option>
+                        <option value="coriander">🌿 Clever Coriander</option>
                     </select>
                 </div>
 
@@ -136,46 +135,39 @@
         let detectedCity = "Manipal";
 
         const seedKnowledge = {
-            tomato: { name: "Heirloom Tomato", opt: [20, 29, 65], co2: 210, 
-                quirks: { 
-                    cold: "It's a bit chilly in CITY_NAME right now! Mission: Keep this pencil-pot indoors near a warm window. It loves that cozy study-desk heat while it sprouts.",
-                    hot: "CITY_NAME is officially a furnace today! Mission: Move your Tomato to an indoor shelf or deep shade. Divas like this need a cool break from the peak sun.",
-                    humid: "Tropical spa vibes in CITY_NAME! Your Tomato is ready for the moisture—just give it a little indoor breeze to keep it feeling fresh and fungi-free."
+            marigold: { name: "Mellow Marigold", opt: [18, 30, 50], co2: 120,
+                quirks: {
+                    cold: "CITY_NAME is giving frost-bitten vibes! Marigolds are sun-seekers. Keep your pencil-pot on a sunny windowsill until the morning air warms up.",
+                    hot: "Goldilocks Alert! CITY_NAME is a bit too toasty. Give these golden guardians a long drink at dawn and some afternoon shade to keep them mellow.",
+                    humid: "Lush Living! Humidity in CITY_NAME is high, which Marigolds tolerate well. Just make sure they have a 'breezy' spot to avoid any petal-mold."
                 }
             },
-            chilli: { name: "Hot Chilli", opt: [25, 35, 60], co2: 180,
+            carrot: { name: "Candid Carrot", opt: [12, 22, 45], co2: 95,
                 quirks: {
-                    cold: "CITY_NAME is in Hibernation Mode! Chillies are tropical souls. Start this one in a cozy indoor corner where it's toastier. It'll explode into life when summer hits.",
-                    hot: "Spicy Summer Mission! The CITY_NAME heat is perfect for developing that famous chilli kick. Just keep the soil moist like a swamp and watch it thrive.",
-                    humid: "Jungle Fever in CITY_NAME! Chillies love this humid air; they're practically on vacation. Perfect time to plant and watch them take over your balcony."
+                    cold: "Cooler than a cucumber! Carrots actually love the CITY_NAME chill. It makes their roots sweeter. This is peak planting time for a crunch.",
+                    hot: "Too Hot to Trot! The CITY_NAME heat might make your carrots 'bolt' or get woody. Keep the pot in the coolest, shadiest corner of your room.",
+                    humid: "Damp Ground Danger! Carrots hate 'soggy bottoms.' If CITY_NAME is humid, ensure your pot has incredible drainage so the roots don't rot."
                 }
             },
-            marigold: { name: "French Marigold", opt: [18, 30, 50], co2: 120,
+            beans: { name: "Bountiful Beans", opt: [20, 28, 60], co2: 160,
                 quirks: {
-                    cold: "Frost-Proofing Strategy for CITY_NAME! A little chill won't stop a Marigold. Keep it indoors at night like a roommate, and let it sunbathe during the day.",
-                    hot: "Golden Hour in CITY_NAME! Marigolds love the light. Give them a heavy long drink at dawn and they'll be the floral bodyguards of your garden all day.",
-                    humid: "Lush Vibes! The CITY_NAME humidity makes them extra leafy. Keep the water at the soil level (not the leaves!) to keep them looking fresh and bold."
+                    cold: "Hibernation Mode! Beans are tropical at heart and hate the CITY_NAME cold. Start them strictly indoors near a heater or a warm computer vent.",
+                    hot: "Summer Stretch! Beans love this CITY_NAME warmth. They'll grow fast, so get a trellis (or a tall chopstick) ready for them to climb toward the sun.",
+                    humid: "Jungle Fever! Bountiful Beans thrive in CITY_NAME's moisture. It helps their leaves stay lush. Just watch out for any fuzzy spots on the leaves."
                 }
             },
-            coriander: { name: "Coriander", opt: [15, 25, 40], co2: 80,
+            fenugreek: { name: "Feisty Fenugreek", opt: [10, 25, 40], co2: 75,
                 quirks: {
-                    cold: "Winter Wonderland! CITY_NAME is coriander heaven right now. This crisp air means extra flavor. Best time to plant for that perfect Dhania garnish.",
-                    hot: "Kitchen Garden Mission! It's too hot on your CITY_NAME balcony. Grow this one right on your cool indoor desk to keep it from flowering too early.",
-                    humid: "Fresh Air Fan! Coriander likes it breezy in CITY_NAME. Use a well-drained pot and keep it near an open window to enjoy the humidity without the rot."
+                    cold: "Frost Fighter! Fenugreek is a winter warrior. It'll survive the CITY_NAME chill better than most. Plant outside and enjoy the rapid green growth.",
+                    hot: "Wilting Warning! CITY_NAME is looking a bit scorched. Fenugreek prefers a cool breeze. Keep it indoors under a fan if the sun gets too aggressive.",
+                    humid: "Quick & Crunchy! High humidity in CITY_NAME means microgreen magic. You can harvest these feisty leaves in just 2 weeks if you keep the air moving."
                 }
             },
-            basil: { name: "Genovese Basil", opt: [22, 32, 65], co2: 150,
+            coriander: { name: "Clever Coriander", opt: [15, 25, 45], co2: 85,
                 quirks: {
-                    cold: "Indoor Royalty! Basil turns black in the CITY_NAME cold. It’s officially an indoor herb for now. Keep it near your laptop—the warmth helps it sprout!",
-                    hot: "Summer Pesto Party! Basil is living its best life in this CITY_NAME sun. Keep picking the top leaves for your pasta and it will grow bushier every day.",
-                    humid: "Spa Day! CITY_NAME humidity means huge, delicious leaves. This is peak basil weather—plant now for an incredible scent in your entire room."
-                }
-            },
-            spinach: { name: "Spinach", opt: [10, 24, 50], co2: 90,
-                quirks: {
-                    cold: "Penguin Mode! Spinach is the ultimate cold-weather hero. It loves this CITY_NAME chill more than you do. Expect rapid, crunchy growth outside.",
-                    hot: "Microgreen Challenge! Too hot for big leaves in CITY_NAME? Grow your spinach as indoor 'micro-greens' for your noodles. Fast, healthy, and cool.",
-                    humid: "Lush Vibes! Spinach loves the CITY_NAME dampness. Just ensure your pot has great drainage so the roots don't get 'soggy feet' while growing."
+                    cold: "Crisp & Clever! Coriander thinks CITY_NAME is perfect right now. This cool air prevents it from flowering too early, giving you more leaves for your tacos.",
+                    hot: "Bolt Alert! It's too hot in CITY_NAME. Your coriander might try to turn into a flower immediately. Keep it in the fridge-door-cool parts of your home.",
+                    humid: "Aromatic Air! The moisture in CITY_NAME helps the essential oils develop. Your room will smell amazing, but don't overwater the soil—mist the air instead!"
                 }
             }
         };
@@ -218,24 +210,24 @@
 
             if (temp < seed.opt[0]) {
                 const delta = (seed.opt[0] - temp).toFixed(1);
-                prob -= (delta * 0.8);
+                prob -= (delta * 1.2); // Slightly higher penalty for cold-sensitive items
                 suggestion = seed.quirks.cold.replace(/CITY_NAME/g, detectedCity);
-                deepDive += `It's crisp out! An indoor start is your secret weapon. `;
+                deepDive += `It's quite brisk! This variety needs a warm 'indoor hug' to start. `;
             } else if (temp > seed.opt[1]) {
                 const delta = (temp - seed.opt[1]).toFixed(1);
-                prob -= (delta * 1.0);
+                prob -= (delta * 1.5); // Higher penalty for heat-induced bolting
                 suggestion = seed.quirks.hot.replace(/CITY_NAME/g, detectedCity);
-                deepDive += `Sun alert! Shady spots or indoor shelves work best today. `;
+                deepDive += `Heatwave detected! Afternoon shade is non-negotiable today. `;
             } else {
                 suggestion = `Perfect conditions in ${detectedCity}! Your ${seed.name} is ready for an outdoor adventure.`;
                 deepDive += `Climate is in the Goldilocks zone. `;
             }
 
-            if (Math.abs(hum - seed.opt[2]) > 20 && hum > 80) {
+            if (Math.abs(hum - seed.opt[2]) > 25 && hum > 75) {
                 suggestion = seed.quirks.humid.replace(/CITY_NAME/g, detectedCity);
             }
 
-            prob = Math.min(Math.max(prob, 72), 99);
+            prob = Math.min(Math.max(prob, 65), 98);
             const co2 = (seed.co2 * (prob / 100) * 1.8).toFixed(0);
 
             setTimeout(() => {
